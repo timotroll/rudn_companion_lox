@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Schedule{% endblock %}
+
+{% block content %}
+<h1>Schedule Page</h1>
+<form method="post" action="{% url 'schedule' %}">
+    {% csrf_token %}
+    <div>
+        <label for="group-select">Номер группы:</label>
+        <select id="group-select" name="group">
+            <option value="">Выберите группу</option>
+            {% for group in w %}
+                <option value="{{ group.pk }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="day-select">День недели:</label>
+        <select id="day-select" name="day">
+            <option value="">Выберите день</option>
+            <option value="monday">Понедельник</option>
+            <option value="tuesday">Вторник</option>
+            <option value="wednesday">Среда</option>
+            <option value="thursday">Четверг</option>
+            <option value="friday">Пятница</option>
+            <option value="saturday">Суббота</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Посмотреть расписание</button>
+    </div>
+</form>
+
+{% if schedule %}
+    <h2>Schedule for {{ group }} on {{ day }}</h2>
+    <ul>
+        {% for lesson in schedule %}
+            <li>{{ lesson.time }} - {{ lesson.subject }} ({{ lesson.room }})</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

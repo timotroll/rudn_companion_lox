@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Map{% endblock %}
+
+{% block content %}
+<h1>Карта</h1>
+<form id="floor-form">
+    <label for="floor-select">Выберите этаж:</label>
+    <select id="floor-select" name="floor">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
+</form>
+
+<div id="floor-image-container">
+    <!-- Images will be dynamically inserted here based on selected floor -->
+</div>
+
+<script>
+    document.getElementById('floor-form').addEventListener('change', function() {
+        var floor = document.getElementById('floor-select').value;
+        var imgContainer = document.getElementById('floor-image-container');
+        imgContainer.innerHTML = '<img src="/static/images/floor_' + floor + '.jpg" alt="Floor ' + floor + '">';
+    });
+</script>
+{% endblock %}

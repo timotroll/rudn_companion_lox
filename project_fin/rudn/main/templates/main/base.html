@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav style="float: left;">
+            <ul>
+                <li><a href="{% url 'index' %}">Главная страница</a></li>
+                <li><a href="{% url 'schedule' %}">Расписание</a></li>
+                <li><a href="{% url 'map' %}">Карта</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+            </ul>
+        </nav>
+        <div style="float: right;">
+            <a href="{% url 'register' %}">Регистрация</a> /
+            <a href="{% url 'log' %}">Вход</a>
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
+
+
