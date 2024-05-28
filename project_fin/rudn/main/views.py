@@ -61,8 +61,8 @@ def schedule(request):
                 lesson = {
                     'time': time,
                     'subject': str_object,
-                    'room': '---',
-                    'cat': '---'
+                    'room': '',
+                    'cat': ''
                 }
                 shedule.append(lesson)
             pare += 1

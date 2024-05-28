@@ -1,6 +1,4 @@
 from django.db import models
-
-from django.db import models
 from django.utils import timezone
 
 class News(models.Model):
@@ -10,6 +8,11 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+    
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    Group = models.ForeignKey('groups', on_delete=models.SET_NULL, null=True, blank=True)
 
 class groups(models.Model):
     id = models.IntegerField('id',unique=True, primary_key=True)
@@ -17,12 +20,12 @@ class groups(models.Model):
     slug = models.SlugField('слаг группы',max_length=255, unique=True, db_index=True, blank=True)
     dep_number = models.TextField('номер факультета', max_length=255, blank=True)
     faculty = models.TextField('название факультета', max_length=255, blank=True)
-    shedule = models.OneToOneField('shedule', on_delete=models.SET_NULL, null=True, blank=True, related_name='group_shedule')
+    schedule = models.OneToOneField('schedule', on_delete=models.SET_NULL, null=True, blank=True, related_name='group_shedule')
 
     def __str__(self):
         return self.name
 
-class shedule(models.Model):
+class schedule(models.Model):
     monday = models.OneToOneField('monday', on_delete=models.SET_NULL, null=True, blank=True,
                                   related_name='group_monday')
     tuesday = models.OneToOneField('tuesday', on_delete=models.SET_NULL, null=True, blank=True,

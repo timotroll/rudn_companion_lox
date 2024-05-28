@@ -36,7 +36,7 @@
     <h2>Schedule for {{ group }} on {{ day }}</h2>
     <ul>
         {% for lesson in schedule %}
-            <li>{{ lesson.time }} - {{ lesson.subject }} ({{ lesson.room }})</li>
+            <li>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
         {% endfor %}
     </ul>
 {% endif %}

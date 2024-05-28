@@ -19,9 +19,9 @@
         </nav>
         <div style="float: right;">
             {% if user.is_authenticated %}
-            <li>{{ user.username }} | <a href= {% url 'users:logout' %}>выйти</a></li>
+            <li><a href= {% url 'users:profile' %}>{{ user.username }}</a> | <a href= {% url 'users:logout' %}>выйти</a></li>
             {%else%}
-            <a href="#">Регистрация</a> | <a href="{% url 'users:login' %}">Вход</a>
+            <a href="{% url 'users:register' %}">Регистрация</a> | <a href="{% url 'users:login' %}">Вход</a>
             {%endif%}
         </div>
     </header>
