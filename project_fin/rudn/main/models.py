@@ -6,7 +6,7 @@ from django.utils import timezone
 class News(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Контент")
-    pub_date = models.DateTimeField('Дата публикации', default=timezone.now)
+    pub_date = models.DateTimeField('Дата публикации', default=timezone.now, )
 
     def __str__(self):
         return self.title

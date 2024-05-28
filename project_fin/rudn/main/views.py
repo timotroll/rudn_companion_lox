@@ -8,21 +8,22 @@ from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm
 from .models import News
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
-class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+# class CustomUserCreationForm(UserCreationForm):
+#     email = forms.EmailField(required=True)
 
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email', 'password1', 'password2')
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.email = self.cleaned_data['email']
+#         if commit:
+#             user.save()
+#         return user
 
 def index(request):
     return render(request, 'main/index.html')
@@ -77,6 +78,8 @@ def schedule(request):
             'w': w
         }
         return render(request, 'main/schedule.html', data)
+    
+@login_required
 def map(request):
     return render(request, 'main/map.html')
 
@@ -88,19 +91,19 @@ def news(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/news.html', {'page_obj': page_obj})
 
-def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'main/register.html', {'form': form})
+# def register(request):
+#     if request.method == 'POST':
+#         form = CustomUserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=password)
+#             login(request, user)
+#             return redirect('index')
+#     else:
+#         form = CustomUserCreationForm()
+#     return render(request, 'main/register.html', {'form': form})
 
-class CustomLoginView(LoginView):
-    template_name = 'main/log.html'
+# class CustomLoginView(LoginView):
+#     template_name = 'main/log.html'
