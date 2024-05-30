@@ -1,6 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
+from main.models import groups
 
 
 class LoginUsersForm(AuthenticationForm):
@@ -18,10 +19,11 @@ class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class':'form-input'}))
     password1 = forms. CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class':'form-input'}))
     password2 = forms. CharField(label='Повтор пароль', widget=forms.PasswordInput(attrs={'class':'form-input'}))
+    Group = forms.ModelChoiceField(label='Группа', queryset=groups.objects.all())
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username', 'email','Group', 'first_name', 'last_name', 'password1', 'password2']
         labels = {
             'email':'Корпоративная почта',
             'first_name':'Имя',

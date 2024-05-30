@@ -1,4 +1,5 @@
 from . import models
+from django.shortcuts import render
 
 
 def day_to_data(day, group_id, number):
