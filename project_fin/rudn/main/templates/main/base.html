@@ -10,12 +10,12 @@
 <body>
     <header>
         <img id="img1" src={% static 'images/logo_white.svg' %} style='float: left; margin-left: 30px'>
-        <nav class="parent_navigation" style='margin-left: 570px;'>
+        <nav class="parent_navigation" style='margin-left: 530px;'>
             <ul class="navigation">
-                <li><a href="{% url 'index' %}">Главная страница</a></li>
-                <li><a href="{% url 'schedule' %}">Расписание</a></li>
-                <li><a href="{% url 'map' %}">Карта</a></li>
-                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'index' %}">Главная страница</a></li>
+                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'schedule' %}">Расписание</a></li>
+                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'map' %}">Карта</a></li>
+                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'news' %}">Новости</a></li>
             </ul>
         </nav>
         <div class='reg_navigation' style='float: right; margin-top: -26px; margin-right: 30px;'>
