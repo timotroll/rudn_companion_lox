@@ -1,12 +1,16 @@
+
 {% extends 'main/base.html' %}
+
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div style="text-align: center;">
-    <h1 style="font-size: 24px;">Главная страница</h1>
-    <p style="font-size: 18px;">Добро пожаловать на сайт для студентов РУДН.</p>
-</div>
+{% load static %}
+<body>
+    <div class="main-content">
+        <p class="inner-content" style='font-size: 50px; font-family: verdana; background: #417db7; border-radius: 40px; padding-top:20px; padding-bottom: 20px; color: white'>Добро пожаловать на сайт для студентов РУДН.</p>
+    </div>
+</body>
 {% endblock %}
 
 

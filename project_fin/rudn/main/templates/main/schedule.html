@@ -3,7 +3,9 @@
 {% block title %}Schedule{% endblock %}
 
 {% block content %}
-<h1>Schedule Page</h1>
+{% load static %}
+<div class="main-content">
+<div style="font-size: 20px; font-family: montserrat;">
 <form method="post" action="{% url 'schedule' %}">
     {% csrf_token %}
     <div>
@@ -28,15 +30,17 @@
         </select>
     </div>
     <div>
-        <button type="submit">Посмотреть расписание</button>
+        <button class='log_button' type="submit">Посмотреть расписание</button>
     </div>
 </form>
+</div>
+</div>
 
 {% if schedule %}
-    <h2>Schedule for {{ group }} on {{ day }}</h2>
-    <ul>
+    <h2 style='margin-left: 670px;'>Расписание группы {{ group }} на {{ day }}</h2>
+    <ul style='margin-left:700px;'>
         {% for lesson in schedule %}
-            <li>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
+            <li style='font-size: 20px;'>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
         {% endfor %}
     </ul>
 {% endif %}

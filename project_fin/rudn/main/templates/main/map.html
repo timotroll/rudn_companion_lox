@@ -3,7 +3,10 @@
 {% block title %}Map{% endblock %}
 
 {% block content %}
+{% load static %}
 <h1>Карта</h1>
+<div class="main-content">
+<div class="inner-content">
 <form id="floor-form">
     <label for="floor-select">Выберите этаж:</label>
     <select id="floor-select" name="floor">
@@ -16,6 +19,8 @@
         <option value="7">7</option>
     </select>
 </form>
+</div>
+</div>
 
 <div id="floor-image-container">
     <!-- Images will be dynamically inserted here based on selected floor -->
