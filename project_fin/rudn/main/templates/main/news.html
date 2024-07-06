@@ -6,7 +6,7 @@
 {% load static %}
 <div class="news-container" style='display: flex; flex-direction: column; flex-wrap: wrap;'>
     {% for news in page_obj %}
-        <div class="news-block">
+        <div class="news-block" style = 'height: auto;'>
             <h2>{{ news.title }}</h2>
             <p>{{ news.content|truncatewords:30 }}</p>
             <small>{{ news.pub_date|date:"d M Y" }}</small>
@@ -30,5 +30,6 @@
             <a id="page-switcher" href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
         {% endif %}
     </span>
+    <a href={% url 'GroupNews' %}><button class='log_button'>Показать новости группы</button></a>
 </div>
 {% endblock %}

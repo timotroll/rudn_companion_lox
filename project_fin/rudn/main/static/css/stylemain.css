@@ -133,7 +133,7 @@ ul.navigation {
 
 #img1{
     float: left;
-    width: 100px;
+    width: 300px;
 }
 
 A {
@@ -198,11 +198,12 @@ A:active {
     margin-block-start: 1em;
     margin-block-end: 1em;
     text-align: center;
-    width: 1600px;
+    width: auto;
     margin-right: auto;
     margin-left: auto;
 }
 .inner-content {
+    background-color: #79ADDC;
     line-height: 1.5;
     font-family: montserrat;
     font-size: 20px;
@@ -535,6 +536,7 @@ a:focus-visible {
     margin-left: auto;
 }
 .inner-content {
+    background-color: #79ADDC;
     line-height: 1.5;
     font-family: montserrat;
     font-size: 20px;

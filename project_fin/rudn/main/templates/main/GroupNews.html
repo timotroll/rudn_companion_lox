@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="news-container" style='display: flex; flex-direction: column; flex-wrap: wrap;'>
+    {% for new in news %}
+        <div class="news-block">
+            <h2>{{ new.header }}</h2>
+            <p>{{ new.body|truncatewords:30 }}</p>
+            <small>{{ new.pub_date|date:"d M Y" }}</small>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="footer" class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a id="page-switcher" href="?page=1">&laquo; Первая</a>
+            <a id="page-switcher" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span id="page-counter" class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a id="page-switcher" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a id="page-switcher" href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

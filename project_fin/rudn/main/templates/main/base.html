@@ -9,16 +9,16 @@
 </head>
 <body>
     <header>
-        <img id="img1" src={% static 'images/logo_white.svg' %} style='float: left; margin-left: 30px'>
+        <a href = {% url 'index' %}><img id="img1" src={% static 'images/rudn_logo_no_back_white.png' %} style='float: left; margin-left: 30px; width: 300px'></a>
         <nav class="parent_navigation" style='margin-left: 530px;'>
             <ul class="navigation">
-                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'index' %}">Главная страница</a></li>
-                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'schedule' %}">Расписание</a></li>
-                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'map' %}">Карта</a></li>
-                <li><a class='log_ref' style='color: white; margin: 0px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'news' %}">Новости</a></li>
+                <li><a class='log_ref' style='color: white; margin-bottom: 20px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'index' %}">Главная страница</a></li>
+                <li><a class='log_ref' style='color: white; margin-bottom: 20px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'schedule' %}">Расписание</a></li>
+                <li><a class='log_ref' style='color: white; margin-bottom: 20px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)'href="{% url 'map' %}">Карта</a></li>
+                <li><a class='log_ref' style='color: white; margin-bottom: 20px; width: 200px; border-radius:20px; background-color: rgba(255,255,255,0.2)' href="{% url 'news' %}">Новости</a></li>
             </ul>
         </nav>
-        <div class='reg_navigation' style='float: right; margin-top: -26px; margin-right: 30px;'>
+        <div class='reg_navigation' style='float: right; margin-top: -45px; margin-right: 30px; font-size: 20px'>
             {% if user.is_authenticated %}
             <li><a href= {% url 'users:profile' %}>{{ user.username }}</a> | <a href= {% url 'users:logout' %}>выйти</a></li>
             {%else%}

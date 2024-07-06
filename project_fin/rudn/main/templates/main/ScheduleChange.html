@@ -1,0 +1,61 @@
+{%extends 'main/base.html'%}
+
+{% block content %}
+
+
+
+<div class="main-content">
+    <div class="inner-content">
+        <h1 style='color: white;'>Создать запрос на изменение расписания</h1>
+        <form method='post' action={% url 'ScheduleChange'%}>
+            {% csrf_token %}
+            <div>
+                <label for='chet-nechet'>Четность недели</label>
+                <select id='chet-nechet' name='chetnost'>
+                    <option value=''>---------</option>
+                    <option value='chet'>Четная</option>
+                    <option value='nechet'>Нечетная</option>
+                </select>
+                <label for='day-select'>день изменеиния</label>
+                <select id='day-select' name='day'>
+                    <option value="">---------</option>
+                    <option value="monday">понедельник</option>
+                    <option value="tuesday">вторник</option>
+                    <option value="wednesday">среда</option>
+                    <option value="thursday">четверг</option>
+                    <option value="friday">пятница</option>
+                    <option value="saturday">суббота</option>
+                </select>
+                <label for='para-num'>Номер пары</label>
+                <select id='para-num' name='num'>
+                    <option value=''>---------</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                </select>
+                <p><label id='para-name'>Предмет</label>
+                <input type='text' id='para-name' name='para' /></p>
+                <p>
+                    <label for='cat-para'>Тип предлмета</label>
+                    <select id='cat-para' name='cat'>
+                        <option value=''>---------</option>
+                        <option value='лекция'>лекция</option>
+                        <option value='практика'>практика</option>
+                        <option value='семинар'>семинар</option>
+                    </select>
+                </p>
+                <p><label id='para-class'>Номер кабинета</label>
+                <input type='text' id='para-class' name='class' /></p>
+            </div>
+
+            <p><button class='log_button' type="submit">Сохранить</button></p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -20,10 +20,11 @@ class RegisterUserForm(UserCreationForm):
     password1 = forms. CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class':'form-input'}))
     password2 = forms. CharField(label='Повтор пароль', widget=forms.PasswordInput(attrs={'class':'form-input'}))
     Group = forms.ModelChoiceField(label='Группа', queryset=groups.objects.all())
+    is_starosta = forms.ChoiceField(label='Являетесь вы старостой?', choices=((1, 'Да'), (0, 'Нет')))
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email','Group', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username', 'email','Group', 'is_starosta', 'first_name', 'last_name', 'password1', 'password2']
         labels = {
             'email':'Корпоративная почта',
             'first_name':'Имя',

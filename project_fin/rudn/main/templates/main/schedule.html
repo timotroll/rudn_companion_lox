@@ -9,40 +9,57 @@
 <form method="post" action="{% url 'schedule' %}">
     {% csrf_token %}
     <div>
-        <label for="group-select">Номер группы:</label>
+        <label for="group-select">Номер группы: </label>
         <select id="group-select" name="group">
             <option value="">Выберите группу</option>
             {% for group in w %}
-                <option value="{{ group.pk }}">{{ group.name }}</option>
+                <option value="{{ group.pk }}" {% if group_val == group.pk %} selected {% endif %}>
+                    {{ group.name }}
+                </option>
             {% endfor %}
         </select>
     </div>
     <div>
-        <label for="day-select">День недели:</label>
-        <select id="day-select" name="day">
+        <label for="day-select">День недели: </label>
+        <select id="day-select" name="day" required>
             <option value="">Выберите день</option>
-            <option value="monday">Понедельник</option>
-            <option value="tuesday">Вторник</option>
-            <option value="wednesday">Среда</option>
-            <option value="thursday">Четверг</option>
-            <option value="friday">Пятница</option>
-            <option value="saturday">Суббота</option>
+            <option value='1'>Понедельник</option>
+            <option value="2">Вторник</option>
+            <option value="3">Среда</option>
+            <option value="4">Четверг</option>
+            <option value="5">Пятница</option>
+            <option value="6">Суббота</option>
+        </select>
+    </div>
+    <div>
+        <label for="day-select">неделя: </label>
+        <select id="day-select" name="week" required>
+            <option value="1">Четная</option>
+            <option value="2">Нечетная</option>
         </select>
     </div>
     <div>
         <button class='log_button' type="submit">Посмотреть расписание</button>
     </div>
+
+    <div>
+        <h1 style='color: red' >{{ exception_day }}</h1>
+    </div>
 </form>
-</div>
-</div>
+
 
 {% if schedule %}
-    <h2 style='margin-left: 670px;'>Расписание группы {{ group }} на {{ day }}</h2>
-    <ul style='margin-left:700px;'>
+    <h2>Расписание группы {{ group }} на {{ day }}</h2>
+    <ul style='margin-left: 350px'>
         {% for lesson in schedule %}
-            <li style='font-size: 20px;'>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
+            <li class='log_button' style='font-size: 20px; color: white; width: 800px;height: auto; display: flex; flex-direction: column; flex-wrap: wrap;'>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
         {% endfor %}
     </ul>
 {% endif %}
 
+{% if request.user.is_starosta == 1 %}
+    <a class='log_button' href={% url "ScheduleChange" %} style='color: white; width: auto;'>Изменить расписание для группы</a>
+{% endif %}
+</div>
+</div>
 {% endblock %}
