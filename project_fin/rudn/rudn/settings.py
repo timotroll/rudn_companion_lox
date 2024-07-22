@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'taggit',
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
@@ -147,3 +148,5 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 AUTH_USER_MODEL = 'main.User'
+
+TAGGIT_CASE_INSENSITIVE = True

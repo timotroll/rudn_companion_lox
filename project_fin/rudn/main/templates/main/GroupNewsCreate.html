@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Create group news{% endblock %}
+
+{% block content %}
+{% load static %}
+<body >
+    <div class="main-content" >
+        <div class="inner-content">
+            <h1 style='color: white;'>Создвание новости для групышей</h1>
+            <form method='post' action={% url 'GroupNewsCreate'%}>
+                {% csrf_token %}
+                <label for='select-cat'>выбор категорий</label>
+                <select id='select-cat' name='cat' required>
+                    {% for cat in categories %}
+                        <option value="{{ cat.pk }}">
+                            {{ cat.category }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <p><label for='input-header'>Заголовок: </label>
+                <input type='text' id='input-header' name='header' required/></p>
+                <p><label for='input-body'>Текст новости: </label>
+                <input type='text' id='input-body' name='body' required/></p>
+                <p><label for='input-hash'>Хештеги (через пробел): </label>
+                <input type='text' id='input-hash' name='hash' required/></p>
+
+                <p><button class='log_button' type="submit">Сохранить</button></p>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

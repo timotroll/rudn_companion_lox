@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 class News(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
@@ -7,10 +8,15 @@ class News(models.Model):
     pub_date = models.DateTimeField('Дата публикации', default=timezone.now)
     cat = models.ForeignKey('categories', on_delete=models.SET_NULL, null=True)
     hashtags = models.TextField('хештеги', max_length=255, blank=True)
+    tags = TaggableManager() 
 
     def __str__(self):
         return self.title
     
+class newsimages(models.Model):
+    image = models.FileField(upload_to ='main/static/images/news/')
+    news = models.ForeignKey('News', on_delete=models.CASCADE, null=True, blank=True, related_name='image')
+
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
@@ -66,3 +72,11 @@ class nechet(models.Model):
 class schedulechange(models.Model):
     dbrequest = models.TextField('запрос', max_length=255)
     execution = models.TextField('изменение', max_length=255)
+
+class notes(models.Model):
+    body = models.TextField('заметка', max_length=255)
+    header = models.CharField('название', max_length=20)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    date = models.DateField('дата создания', default=timezone.now)
+    
+

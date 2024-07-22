@@ -50,11 +50,15 @@
 
 {% if schedule %}
     <h2>Расписание группы {{ group }} на {{ day }}</h2>
-    <ul style='margin-left: 350px'>
+    <ul id='ScheduleUl' style='margin-left: 350px'>
         {% for lesson in schedule %}
             <li class='log_button' style='font-size: 20px; color: white; width: 800px;height: auto; display: flex; flex-direction: column; flex-wrap: wrap;'>{{ lesson.time }} - {{ lesson.subject }} {{ lesson.room }}</li>
         {% endfor %}
     </ul>
+{% endif %}
+
+{% if pare_num %}
+    <p id='ParaNum'>{{ pare_num }}<p>
 {% endif %}
 
 {% if request.user.is_starosta == 1 %}
@@ -62,4 +66,5 @@
 {% endif %}
 </div>
 </div>
+<script src="{% static 'js/schedule.js'%}"></script>
 {% endblock %}

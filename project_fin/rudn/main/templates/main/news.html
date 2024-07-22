@@ -4,17 +4,44 @@
 
 {% block content %}
 {% load static %}
-<div class="news-container" style='display: flex; flex-direction: column; flex-wrap: wrap;'>
-    {% for news in page_obj %}
-        <div class="news-block" style = 'height: auto;'>
-            <h2>{{ news.title }}</h2>
-            <p>{{ news.content|truncatewords:30 }}</p>
-            <small>{{ news.pub_date|date:"d M Y" }}</small>
-        </div>
-    {% endfor %}
+<div class='tags-container'>
+    <div class='tags-manipulator'>
+        <button id='show-tags '></button>
+    </div>
+    <div class='tags-list'>
+        <ul>
+            {% for tag in AllTags %}
+                <li><a href="/news/tag/{{ tag.slug }}" style='color: black;'>{{ tag.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
-<div id="footer" class="pagination">
+<div class="news-container">
+    <div class='news-list'>
+    {% for news in page_obj %}
+        <div class="news-block" style = 'width: auto;'>
+            <h2 class='NewsTitle'>{{ news.title }}</h2>
+            <button class='log_button' style='width: 140px; float: right;'>подробнее</button>
+            {% for img in AllImages %}
+                {% if img.news.id == news.id %}
+                    <img src={% static img.image %} style='width: 50px'>
+                {% endif %}
+            {% endfor %}
+            <p>{{ news.content|truncatewords:15 }}</p>
+            <p class='hiddenText'>{{ news.content }}</p>
+            <small style='display: inline;'>{{ news.pub_date|date:"d M Y" }}    |||    </small><small style='display: inline; width: auto;'>{{ news.tags.all|join:", " }}</small>
+        </div>
+    {% endfor %}
+    </div>
+    <div class='news-view'>
+        <h1 id='InnerTitle'></h1>
+        <p id='InnerText'>кликните на новость чтобы увидеть ее содержание</p>
+        <img id='InnerImg' style='width: 80vh; margin-left: 280px'>
+    </div>
+</div>
+
+<div id="footer" class="pagination" style='background-color: white; height: auto; margin-bottom: 0px'>
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a id="page-switcher" href="?page=1">&laquo; Первая</a>
@@ -32,4 +59,5 @@
     </span>
     <a href={% url 'GroupNews' %}><button class='log_button'>Показать новости группы</button></a>
 </div>
+<script src="{% static 'js/news.js' %}"></script>
 {% endblock %}
